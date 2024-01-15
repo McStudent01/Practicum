@@ -28,17 +28,15 @@ public class ProductReader
                 InputStream in = new BufferedInputStream(Files.newInputStream(file, CREATE));
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                // Print column headers
-                System.out.printf("%-15s %-20s %-20s %-10s %-5s\n", "ID", "Name", "Description", "Cost");
-                System.out.println("----------------------------------------------------------------");
 
+            System.out.printf("%-15s %-20s %-30s %-8s\n", "Product ID", "Product Name", "Description", "Cost");
+            System.out.println("-----------------------------------------------------------------------");
                 // Read and format each record
-                int line = 1;
-                while ((rec = reader.readLine()) != null) {
-                    String[] fields = rec.split(",");  // Assuming comma-separated values
-                    System.out.printf("%-15s %-20s %-20s %-10s %-5s\n", fields[0], fields[1], fields[2], fields[3], fields[4]);
-                    line++;
-                }
+            int line = 1;
+            while ((rec = reader.readLine()) != null) {
+                String[] fields = rec.split(",");
+                System.out.printf("%-15s %-20s %-30s %8.2f\n", fields[0], fields[1], fields[2], Double.parseDouble(fields[3]));
+            }
 
                 reader.close();
                 System.out.println("\nData file read!");
